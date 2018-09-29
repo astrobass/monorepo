@@ -5,73 +5,47 @@ import java.math.*;
 import java.text.*;
 import java.util.*;
 import java.util.regex.*;
-//import org.junit.*;
-//import org.junit.runner.*;
+import org.junit.*;
+import org.junit.runner.*;
+import static org.junit.Assert.*;
 
 public class Solution {
+  public static String problemStatement = "This problem was recently asked by Google. Given a list of numbers and a number k, return whether any two numbers from the list add up to k. For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17. Bonus: Can you do this in one pass?";
 
-    // Complete the myMap function below.
-    static void addOne(Map<String,Object> myMap) {
-        // Iterate through values of myMap
-        // If value is ArrayList<String>, append "one" to that ArrayList
-        // If value is ArrayList<Integer>, append 1 to that ArrayList
-        for( Map.Entry<String,Object> entry : myMap.entrySet() ) {
-            ArrayList<Object> value = (ArrayList<Object>)entry.getValue();
-            if( value.get(0) instanceof String) {
-                value.add("one");
-                entry.setValue(value);
-            } else {
-                value.add(1);
-                entry.setValue(value);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        // Uncomment to run JUnit test case
-        //JUnitCore.main("Solution");
-        
-        ArrayList<String> value1 = new ArrayList<String>();
-        value1.add("hello");
-        
-        ArrayList<Integer> value2 = new ArrayList<Integer>();
-        value2.add(123);
-        
-        Map<String,Object> myMap = new HashMap<String,Object>();
-        myMap.put("key1", value1);
-        myMap.put("key2", value2);
-        
-        // Before myMap = { "key1": ["hello"], "key2": [123] }
-        System.out.println("Before myMap: " + myMap);
-        addOne(myMap);
-        // After myMap = { "key1": ["hello", "one"], "key2": [123, 1] }
-        System.out.println("After myMap: " + myMap);
-    }
+  public static boolean isAddUp(int[] input, int sum) {
+    List<Integer> list = new ArrayList();
     
- /*
-   @Test
-    public void testOne() {
-      ArrayList<String> value1 = new ArrayList<String>();
-      value1.add("hello");
-      ArrayList<Integer> value2 = new ArrayList<Integer>();
-      value2.add(123);
-      Map<String,Object> myMap = new HashMap<String,Object>();
-      myMap.put("key1", value1);
-      myMap.put("key2", value2);
-
-      ArrayList<String> value3 = new ArrayList<String>();
-      value3.add("hello");
-      value3.add("one");
-      ArrayList<Integer> value4 = new ArrayList<Integer>();
-      value4.add(123);
-      value4.add(1);
-      Map<String,Object> answerMap = new HashMap<String,Object>();
-      answerMap.put("key1", value1);
-      answerMap.put("key2", value2);
-      
-      addOne(myMap);
-      Assert.assertEquals(answerMap, myMap);
+    for( int i=0; i<input.length; i++ ) {
+      int element = input[i];
+      if( list.contains(sum-element) ) {
+        return true;
+      } else {
+        list.add(element);
+      }
     }
-*/
-}
+    return false;
+  }
 
+  public static void main(String[] args) {
+    System.out.println(problemStatement);
+    System.out.println();
+
+    JUnitCore.main("com.javaproblems.javaproblems.problem1.Solution");
+  }
+
+  @Test
+  public void testOne() {
+    int[] input = {10, 15, 3, 7};
+    int sum = 17;
+    boolean result = isAddUp(input, sum);
+    assertEquals("Testing input " + Arrays.toString(input) + " for sum " + sum, result, true);
+  }
+
+  @Test
+  public void testTwo() {
+    int[] input = {10, 15, 3, 7};
+    int sum = 30;
+    boolean result = isAddUp(input, sum);
+    assertEquals("Testing input " + Arrays.toString(input) + " for sum " + sum, result, false);
+  }
+}

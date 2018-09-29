@@ -1,7 +1,7 @@
 package com.javaproblems.javaproblems;
 import java.net.URLClassLoader;
 import java.net.URL;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import com.javaproblems.javaproblems.problem1.Solution;
 
 public class App {
@@ -24,6 +24,8 @@ public class App {
       Object result = method.invoke(null, (Object)args);
     } catch(ClassNotFoundException e) {
       System.out.println("Problem does not exist");
+    } catch(InvocationTargetException e) {
+      System.out.println(e.getCause());
     } catch(Exception e) {
       System.out.println(e);
     }
