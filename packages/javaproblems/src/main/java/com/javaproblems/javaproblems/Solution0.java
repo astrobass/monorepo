@@ -1,14 +1,13 @@
-package com.javaproblems.javaproblems.problem0;
-
 import java.io.*;
 import java.math.*;
 import java.text.*;
 import java.util.*;
 import java.util.regex.*;
-//import org.junit.*;
-//import org.junit.runner.*;
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.rules.*;
 
-public class Solution {
+public class Solution0 {
 
     // Complete the myMap function below.
     static void addOne(Map<String,Object> myMap) {
@@ -28,29 +27,30 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        // Uncomment to run JUnit test case
-        //JUnitCore.main("Solution");
-        
-        ArrayList<String> value1 = new ArrayList<String>();
-        value1.add("hello");
-        
-        ArrayList<Integer> value2 = new ArrayList<Integer>();
-        value2.add(123);
-        
-        Map<String,Object> myMap = new HashMap<String,Object>();
-        myMap.put("key1", value1);
-        myMap.put("key2", value2);
-        
-        // Before myMap = { "key1": ["hello"], "key2": [123] }
-        System.out.println("Before myMap: " + myMap);
-        addOne(myMap);
-        // After myMap = { "key1": ["hello", "one"], "key2": [123, 1] }
-        System.out.println("After myMap: " + myMap);
+      JUnitCore.main("Solution0");
     }
     
- /*
-   @Test
-    public void testOne() {
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+      protected void starting(Description description) {
+        System.out.println();
+        System.out.println();
+        System.out.println("Starting test: " + description.getMethodName());
+      }
+
+      protected void succeeded(Description description) {
+        System.out.println();
+        System.out.println("  " + description.getMethodName() + " succeeded.");
+      }
+
+      protected void failed(Description description) {
+        System.out.println();
+        System.out.println("  " + description.getMethodName() + " failed.");
+      }
+    };
+
+    @Test
+    public void testAddingStringAndInteger() {
       ArrayList<String> value1 = new ArrayList<String>();
       value1.add("hello");
       ArrayList<Integer> value2 = new ArrayList<Integer>();
@@ -68,10 +68,13 @@ public class Solution {
       Map<String,Object> answerMap = new HashMap<String,Object>();
       answerMap.put("key1", value1);
       answerMap.put("key2", value2);
-      
+        
+//      Before myMap = { "key1": ["hello"], "key2": [123] }
+//      System.out.println("Before myMap: " + myMap);
       addOne(myMap);
+//      After myMap = { "key1": ["hello", "one"], "key2": [123, 1] }
+//      System.out.println("After myMap: " + myMap);
       Assert.assertEquals(answerMap, myMap);
     }
-*/
 }
 

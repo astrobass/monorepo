@@ -2,7 +2,6 @@ package com.javaproblems.javaproblems;
 import java.net.URLClassLoader;
 import java.net.URL;
 import java.lang.reflect.*;
-import com.javaproblems.javaproblems.problem1.Solution;
 
 public class App {
   public static void main( String[] args ) {
@@ -17,7 +16,8 @@ public class App {
     System.out.println();
 
     try {
-      String className = "com.javaproblems.javaproblems.problem" + problemNumber + ".Solution";
+//      String className = "com.javaproblems.javaproblems.Solution" + problemNumber;
+      String className = "Solution" + problemNumber;
       Class classToLoad = Class.forName(className);
       Method method = classToLoad.getDeclaredMethod("main",String[].class);
       method.setAccessible(true);
