@@ -2,5 +2,7 @@
 
 #dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 #cd dir
-cd $PWD
+BASEDIR=$(dirname "$0")
+cd $BASEDIR
+mvn package
 java -cp target/javaproblems-1.0-SNAPSHOT.jar:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar com.javaproblems.javaproblems.App $1

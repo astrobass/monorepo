@@ -1,3 +1,5 @@
 #!/bin/sh
 
-NUM=$1 npm test
+BASEDIR=$(dirname "$0")
+cd $BASEDIR
+NUM=$1 npm test --silent
